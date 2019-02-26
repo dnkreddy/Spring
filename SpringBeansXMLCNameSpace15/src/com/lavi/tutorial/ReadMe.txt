@@ -1,0 +1,1 @@
+c-Namespace designed to reduce size of configuration file

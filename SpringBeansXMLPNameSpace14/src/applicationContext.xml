@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+		
+	<!-- Address bean -->
+	<bean id="person" class="com.lavi.tutorial.Person" 	p:personName="LAVI" p:age="50" 	p:address-ref="addressId"/>
+
+	
+	<!-- Address bean which injects in Address bean -->
+	<bean id="addressId" class="com.lavi.tutorial.Address" p:city="Bangalore" 
+	p:state="karnataka" p:pincode="560016"/>
+
+</beans>
