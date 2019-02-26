@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	 http://www.springframework.org/schema/context 
+	 http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	 http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+     
+    	<context:annotation-config></context:annotation-config>
+    	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<!-- Middle level services -->	
+	<bean id="logSer" class="com.lavi.tutorial.LogService"/>
+	<bean id="txSer" class="com.lavi.tutorial.TxService"/>
+	
+	<!-- Adivces  -->
+	<bean id="MBAdvice" class="com.lavi.tutorial.MBeforeAdvice"/>
+	<bean id="MARdvice" class="com.lavi.tutorial.MAfterReturningAdvice"/>
+	<bean id="MTdvice" class="com.lavi.tutorial.MThrowsAdvice"/>
+	
+	<!-- Target object -->
+	<bean id="target1" class="com.lavi.tutorial.AccountServiceImpl"/>
+	
+	<bean id="PC1" class="org.springframework.aop.aspectj.AspectJExpressionPointcut">
+		<property name="expression" value="execution(* com.lavi.tutorial.AccountService.*(..))">
+		</property>
+	</bean>
+	
+	<bean name="MBAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+	  <property name="advice" ref="MBAdvice"></property>
+	  <property name="pointcut" ref="PC1"></property>
+	</bean>
+	
+	<bean name="MARAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+	  <property name="advice" ref="MARdvice"></property>
+	  <property name="pointcut" ref="PC1"></property>
+	</bean>
+	
+	<bean name="MTAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+	  <property name="advice" ref="MTdvice"></property>
+	  <property name="pointcut" ref="PC1"></property>
+	</bean>
+	
+	
+</beans>
