@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+		
+	<!-- Address bean -->
+	<bean id="person" class="com.lavi.tutorial.Person" autowire="byName">
+		<property name="personName">
+			<value>Naveen</value>
+		</property>
+		<property name="age" >
+			<value>30</value>
+		</property>
+		<!-- <property name="address" ref="address"/> -->
+	 </bean>
+	
+	<!-- Address bean which injects in Person bean byType-->
+	<bean id="address" class="com.lavi.tutorial.Address">
+		<property name="city">
+			<value>Bangalore</value>
+		</property>
+		<property name="state">
+			<value>karnataka</value>
+		</property>
+		<property name="pincode">
+			<value>560016</value>
+		</property>
+	</bean>
+</beans>
