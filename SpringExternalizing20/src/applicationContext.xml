@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	 http://www.springframework.org/schema/context 
+	 http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	
+   	<context:annotation-config></context:annotation-config>
+	<bean id="placeHolder" class=" org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<property name="locations">
+	  <list>
+	    <value>mysql.properties</value>
+	  <value>oracle.properties</value>
+	  </list>
+	</property>
+	
+	
+	</bean>
+	
+	<bean id="baseDS"  abstract="true">
+	  <property name="password" value="password"></property>
+	  <property name="min" value="10"/>
+	  <property name="max" value="20"/>
+	</bean>
+	
+	<bean id="oracleDS" class="com.lavi.tutorial.Datasource" parent="baseDS" >
+	   <property name="driverClass"  value="${oracle.driverclass}"></property>
+	   <property name="url"  value="${oracle.url}"></property>
+	   <property name="userName"  value="${oracle.username}"></property>
+	</bean>
+		
+	<bean id="mysqlDS" class="com.lavi.tutorial.Datasource" parent="baseDS" >
+	   <property name="driverClass" value="${mysql.driverclass}"></property>
+	   <property name="url"  value="${mysql.url}"></property>
+	   <property name="userName"  value="${mysql.username}"></property>
+	</bean>
+	
+	<bean id="test" class="com.lavi.tutorial.BaseDAO"></bean>
+</beans>

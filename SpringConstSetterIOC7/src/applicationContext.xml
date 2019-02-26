@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+		
+	<!-- Address bean -->
+	<bean id="person" class="com.lavi.tutorial.Person" >
+		<constructor-arg index="0" value="Naveen"></constructor-arg>
+		<constructor-arg index="1" value="30" type="int"></constructor-arg>
+		<constructor-arg index="2" ref="addressId"></constructor-arg>
+		
+		<property name="emails">
+		 <list>
+		   <value>email1</value>
+		   <value>email2</value>
+		   <value>email3</value>
+		 </list>
+		</property>
+		
+	<property name="phonenos">
+	 <set>
+	   <value>11111</value>
+	   <value>22222</value>
+	   <value>33333</value>
+	 </set>
+	</property>
+	
+	<property name="phoneMap">
+	<map>
+	 	<entry key="a" value="9090"/>
+	  	<entry key="b" value="8080"/>
+	   	<entry key="c" value="7070"/>
+	</map>
+	</property>
+	
+	<property name="prop">
+	  <props>
+	    <prop key="dd">DD</prop>
+	    <prop key="ee">EE</prop>
+	    <prop key="ff">FF</prop>
+	  </props>
+	</property>
+	
+	<property name="addrs">
+		<list>
+		 	<ref bean="addressId"/>
+		 	<ref bean="address1"/>
+		  	<ref bean="address2"/>
+		</list>
+	
+	</property>
+	 </bean>
+	
+	<!-- Address bean which injects in Person bean -->
+	<bean id="addressId" class="com.lavi.tutorial.Address">
+		<property name="city">
+			<value>Bangalore</value>
+		</property>
+		<property name="state">
+			<value>karnataka</value>
+		</property>
+		<property name="pincode">
+			<value>560016</value>
+		</property>
+	</bean>
+	
+	<bean id="address1" class="com.lavi.tutorial.Address">
+		<property name="city">
+			<value>Bangalore1</value>
+		</property>
+		<property name="state">
+			<value>karnataka1</value>
+		</property>
+		<property name="pincode">
+			<value>560017</value>
+		</property>
+	</bean>
+	
+	<bean id="address2" class="com.lavi.tutorial.Address">
+		<property name="city">
+			<value>Bangalore2</value>
+		</property>
+		<property name="state">
+			<value>karnataka2</value>
+		</property>
+		<property name="pincode">
+			<value>560018</value>
+		</property>
+	</bean>
+</beans>
